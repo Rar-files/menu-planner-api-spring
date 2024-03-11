@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ApiSpringApplication {
-			print("HAHA ale z ciebie bambik")
 	public static void main(String[] args) {
 		SpringApplication.run(ApiSpringApplication.class, args);
 	}
