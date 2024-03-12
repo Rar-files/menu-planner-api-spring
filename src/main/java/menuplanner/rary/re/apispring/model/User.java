@@ -3,10 +3,14 @@ package menuplanner.rary.re.apispring.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "User")
+@Table(name="Users")
 public class User {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "auth_id", nullable = false, unique = true)
+    private String authId;
 
     @Column(name = "name")
     private String name;
@@ -18,25 +22,35 @@ public class User {
     private String image;
 
     @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public User(){}
 
-    public User(String id, String name, String email, String image, Role role) {
+    public User(int id, String authId, String name, String email, String image, Role role) {
         super();
         this.id = id;
+        this.authId = authId;
         this.name = name;
         this.email = email;
         this.image = image;
         this.role = role;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAuthId() {
+        return authId;
+    }
+
+    public void setAuthId(String authId) {
+        this.authId = authId;
     }
 
     public String getName() {
