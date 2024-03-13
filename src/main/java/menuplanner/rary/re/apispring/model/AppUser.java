@@ -2,9 +2,11 @@ package menuplanner.rary.re.apispring.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
-@Table(name="Users")
-public class User {
+@Table(name="app_user")
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -25,9 +27,12 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(){}
+    @OneToMany(mappedBy = "appUser")
+    private Set<TeamUser> teams;
 
-    public User(int id, String authId, String name, String email, String image, Role role) {
+    public AppUser(){}
+
+    public AppUser(int id, String authId, String name, String email, String image, Role role) {
         super();
         this.id = id;
         this.authId = authId;
@@ -83,5 +88,9 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Set<TeamUser> getTeams() {
+        return teams;
     }
 }
