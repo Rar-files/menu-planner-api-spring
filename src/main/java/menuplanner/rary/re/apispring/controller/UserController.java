@@ -2,7 +2,7 @@ package menuplanner.rary.re.apispring.controller;
 
 import java.util.List;
 
-import menuplanner.rary.re.apispring.model.AppUser;
+import menuplanner.rary.re.apispring.model.user.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

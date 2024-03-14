@@ -1,4 +1,4 @@
-package menuplanner.rary.re.apispring.model;
+package menuplanner.rary.re.apispring.model.team;
 
 import jakarta.persistence.*;
 
@@ -10,10 +10,10 @@ public class Team {
     @Id    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(name = "slug", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String slug;
 
     @OneToMany(mappedBy = "team")

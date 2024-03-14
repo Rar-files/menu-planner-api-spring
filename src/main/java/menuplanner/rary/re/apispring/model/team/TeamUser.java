@@ -1,23 +1,25 @@
-package menuplanner.rary.re.apispring.model;
+package menuplanner.rary.re.apispring.model.team;
 
 import jakarta.persistence.*;
+import menuplanner.rary.re.apispring.model.team.Team;
+import menuplanner.rary.re.apispring.model.team.TeamRole;
+import menuplanner.rary.re.apispring.model.user.AppUser;
 
 @Entity
 @Table(name = "team_user")
 public class TeamUser {
     @Id    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
-    @Column(name = "team_role")
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private TeamRole teamRole;
+    private TeamRole teamRole = TeamRole.MEMBER;
 
-    @JoinColumn(name = "app_user")
+    @JoinColumn(nullable = false)
     @ManyToOne
     private AppUser appUser;
 
-    @JoinColumn(name = "team")
+    @JoinColumn(nullable = false)
     @ManyToOne
     private Team team;
 

@@ -1,6 +1,7 @@
-package menuplanner.rary.re.apispring.model;
+package menuplanner.rary.re.apispring.model.user;
 
 import jakarta.persistence.*;
+import menuplanner.rary.re.apispring.model.team.TeamUser;
 
 import java.util.Set;
 
@@ -11,19 +12,19 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "auth_id", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String authId;
 
-    @Column(name = "name")
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "email")
+    @Column(nullable = false)
     private String email;
 
-    @Column(name = "image")
-    private String image;
+    @Column(nullable = false)
+    private String image = "https://i.ibb.co/SNvQNgq/no-profile.png";
 
-    @Column(name = "role")
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
 
