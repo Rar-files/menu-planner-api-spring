@@ -1,33 +1,39 @@
-package menuplanner.rary.re.apispring.model;
+package menuplanner.rary.re.apispring.model.user;
 
 import jakarta.persistence.*;
+import menuplanner.rary.re.apispring.model.team.TeamUser;
+
+import java.util.Set;
 
 @Entity
-@Table(name="Users")
-public class User {
+@Table(name="app_user")
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "auth_id", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String authId;
 
-    @Column(name = "name")
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "email")
+    @Column(nullable = false)
     private String email;
 
-    @Column(name = "image")
-    private String image;
+    @Column(nullable = false)
+    private String image = "https://i.ibb.co/SNvQNgq/no-profile.png";
 
-    @Column(name = "role")
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(){}
+    @OneToMany(mappedBy = "appUser")
+    private Set<TeamUser> teams;
 
-    public User(int id, String authId, String name, String email, String image, Role role) {
+    public AppUser(){}
+
+    public AppUser(int id, String authId, String name, String email, String image, Role role) {
         super();
         this.id = id;
         this.authId = authId;
@@ -83,5 +89,9 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Set<TeamUser> getTeams() {
+        return teams;
     }
 }
