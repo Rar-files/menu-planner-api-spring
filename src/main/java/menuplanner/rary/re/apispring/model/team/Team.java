@@ -17,7 +17,7 @@ public class Team {
     private String slug;
 
     @OneToMany(mappedBy = "team")
-    private Set<TeamUser> app_users;
+    private Set<TeamUser> users;
 
     @OneToMany(mappedBy = "team")
     private Set<TeamMealType> meal_types;
@@ -52,7 +52,11 @@ public class Team {
     }
 
     public Set<TeamUser> getUsers() {
-        return app_users;
+        return users;
+    }
+
+    public Set<TeamMealType> getMealTypes() {
+        return meal_types;
     }
 
 }

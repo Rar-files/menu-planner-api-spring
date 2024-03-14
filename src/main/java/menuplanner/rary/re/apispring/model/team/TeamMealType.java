@@ -15,4 +15,32 @@ public class TeamMealType {
     @JoinColumn(nullable = false)
     @ManyToOne
     private Team team;
+
+    public TeamMealType(){}
+
+    public TeamMealType(MealType mealType, Team team) {
+        super();
+        this.mealType = mealType;
+        this.team = team;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public MealType getMealType() {
+        return mealType;
+    }
+
+    public void setMealType(MealType mealType) {
+        this.mealType = mealType;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 }
