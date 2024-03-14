@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import menuplanner.rary.re.apispring.exception.*;
-import menuplanner.rary.re.apispring.repository.UserRepository;
+import menuplanner.rary.re.apispring.repository.user.UserRepository;
 
 @RestController
 @RequestMapping("/api/v1/")
