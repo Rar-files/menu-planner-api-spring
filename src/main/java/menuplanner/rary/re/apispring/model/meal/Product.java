@@ -2,6 +2,8 @@ package menuplanner.rary.re.apispring.model.meal;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name="product")
 public class Product {
@@ -20,4 +22,7 @@ public class Product {
 
     @Column(nullable = false)
     private float pricePerUnit;
+
+    @OneToMany(mappedBy = "product")
+    private Set<Ingredient> ingredients;
 }

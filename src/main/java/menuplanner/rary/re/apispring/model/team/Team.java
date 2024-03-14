@@ -19,6 +19,9 @@ public class Team {
     @OneToMany(mappedBy = "team")
     private Set<TeamUser> app_users;
 
+    @OneToMany(mappedBy = "team")
+    private Set<TeamMealType> meal_types;
+
     public Team() {
 
     }
