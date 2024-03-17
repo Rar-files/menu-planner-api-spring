@@ -1,8 +1,11 @@
 package menuplanner.rary.re.apispring.model.team;
 
+import lombok.Getter;
+import lombok.Setter;
 import menuplanner.rary.re.apispring.model.meal.MealType;
 import jakarta.persistence.*;
 
+@Getter
 @Entity
 @Table(name="team_meal_type")
 public class TeamMealType {
@@ -10,10 +13,12 @@ public class TeamMealType {
     private int id;
 
     @Column(nullable = false)
+    @Setter
     private MealType mealType;
 
     @JoinColumn(nullable = false)
     @ManyToOne
+    @Setter
     private Team team;
 
     public TeamMealType(){}
@@ -21,26 +26,6 @@ public class TeamMealType {
     public TeamMealType(MealType mealType, Team team) {
         super();
         this.mealType = mealType;
-        this.team = team;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public MealType getMealType() {
-        return mealType;
-    }
-
-    public void setMealType(MealType mealType) {
-        this.mealType = mealType;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
         this.team = team;
     }
 }

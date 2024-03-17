@@ -1,13 +1,19 @@
 package menuplanner.rary.re.apispring.model.meal;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name="meal")
 public class Meal {
     @Id    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.PRIVATE)
     private int id;
 
     @Column(nullable = false, unique = true)
@@ -32,35 +38,4 @@ public class Meal {
         this.ingredients = ingredients;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
-    }
 }
