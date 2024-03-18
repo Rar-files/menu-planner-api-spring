@@ -4,6 +4,7 @@ import menuplanner.rary.re.apispring.exception.ResourceNotFoundException;
 import menuplanner.rary.re.apispring.model.team.Team;
 import menuplanner.rary.re.apispring.repository.team.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +23,8 @@ public class TeamController {
 
     // get all teams
     @GetMapping()
-    public List<Team> getAllTeams(){
-        return _teamRepository.findAll();
+    public ResponseEntity<List<Team>> getAllTeams(){
+        return ResponseEntity.ok(_teamRepository.findAll());
     }
 
     // get team by id
@@ -36,7 +37,7 @@ public class TeamController {
 
     // create a new team
     @PostMapping()
-    public Team createTeam(@RequestBody Team team) {
-        return _teamRepository.save(team);
+    public ResponseEntity<Team> createTeam(@RequestBody Team team) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(_teamRepository.save(team));
     }
 }

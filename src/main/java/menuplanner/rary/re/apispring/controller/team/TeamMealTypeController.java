@@ -7,6 +7,9 @@ import menuplanner.rary.re.apispring.model.meal.MealType;
 import menuplanner.rary.re.apispring.model.team.TeamMealType;
 import menuplanner.rary.re.apispring.repository.team.TeamMealTypeRepository;
 import menuplanner.rary.re.apispring.repository.team.TeamRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -19,6 +22,7 @@ public class TeamMealTypeController {
     private final TeamRepository _teamRepository;
     private final TeamMealTypeMapper _teamMealTypeMapper;
 
+    @Autowired
     public TeamMealTypeController(TeamMealTypeRepository teamMealTypeRepository, TeamRepository teamRepository, TeamMealTypeMapper teamMealTypeMapper) {
         _teamMealTypeRepository = teamMealTypeRepository;
         _teamRepository = teamRepository;
@@ -27,23 +31,23 @@ public class TeamMealTypeController {
 
     // get all meal types for a team
     @GetMapping()
-    public List<MealType> getAllTeamMealTypes(@PathVariable int id) {
-        return _teamMealTypeRepository.findByTeamID(id);
+    public ResponseEntity<List<MealType>> getAllTeamMealTypes(@PathVariable int id) {
+        return ResponseEntity.ok(_teamMealTypeRepository.findByTeamID(id));
     }
 
     // get all meal types for a team
     @GetMapping("/details")
-    public List<TeamMealType> getAllTeamMealTypesWithDetails(@PathVariable int id) {
-        return _teamMealTypeRepository.findWithDetailsByTeamID(id);
+    public ResponseEntity<List<TeamMealType>> getAllTeamMealTypesWithDetails(@PathVariable int id) {
+        return ResponseEntity.ok(_teamMealTypeRepository.findWithDetailsByTeamID(id));
     }
 
     // create a new meal type for a team
     @PostMapping()
-    public TeamMealType createMealType(@PathVariable int id, @RequestBody TeamMealTypeDto teamMealTypeDto) {
+    public ResponseEntity<TeamMealType> createMealType(@PathVariable int id, @RequestBody TeamMealTypeDto teamMealTypeDto) {
         var teamMealType = _teamMealTypeMapper.toEntity(teamMealTypeDto);
         var team = _teamRepository.findById(id);
         if (team.isEmpty()) {throw new ResourceNotFoundException("Team not exist with id :" + id);}
         teamMealType.setTeam(team.get());
-        return _teamMealTypeRepository.save(teamMealType);
+        return ResponseEntity.status(HttpStatus.CREATED).body(_teamMealTypeRepository.save(teamMealType));
     }
 }
