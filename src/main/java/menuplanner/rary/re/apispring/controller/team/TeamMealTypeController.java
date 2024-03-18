@@ -32,13 +32,7 @@ public class TeamMealTypeController {
     // get all meal types for a team
     @GetMapping()
     public ResponseEntity<List<MealType>> getAllTeamMealTypes(@PathVariable int id) {
-        return ResponseEntity.ok(_teamMealTypeRepository.findByTeamID(id));
-    }
-
-    // get all meal types for a team
-    @GetMapping("/details")
-    public ResponseEntity<List<TeamMealType>> getAllTeamMealTypesWithDetails(@PathVariable int id) {
-        return ResponseEntity.ok(_teamMealTypeRepository.findWithDetailsByTeamID(id));
+        return ResponseEntity.ok(_teamMealTypeRepository.findAllByTeamID(id));
     }
 
     // create a new meal type for a team

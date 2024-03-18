@@ -1,5 +1,6 @@
 package menuplanner.rary.re.apispring.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import menuplanner.rary.re.apispring.model.team.TeamUser;
 
@@ -29,6 +30,7 @@ public class AppUser {
     private Role role;
 
     @OneToMany(mappedBy = "appUser")
+    @JsonIgnore()
     private Set<TeamUser> teams;
 
     public AppUser(){}

@@ -1,5 +1,6 @@
 package menuplanner.rary.re.apispring.model.team;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -23,10 +24,12 @@ public class TeamUser {
 
     @JoinColumn(nullable = false)
     @ManyToOne
+    @JsonIgnoreProperties("teams")
     private AppUser appUser;
 
     @JoinColumn(nullable = false)
     @ManyToOne
+    @JsonIgnoreProperties("users")
     private Team team;
 
     public TeamUser() {

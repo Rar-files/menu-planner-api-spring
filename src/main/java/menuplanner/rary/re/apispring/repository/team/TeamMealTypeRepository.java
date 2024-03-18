@@ -12,9 +12,6 @@ import java.util.List;
 @Repository
 public interface TeamMealTypeRepository extends JpaRepository<TeamMealType, Integer> {
     @Query("SELECT tmt.mealType FROM TeamMealType tmt WHERE tmt.team.id = :teamId")
-    List<MealType> findByTeamID(int teamId);
-
-    @Query("SELECT tmt FROM TeamMealType tmt WHERE tmt.team.id = :teamId")
-    List<TeamMealType> findWithDetailsByTeamID(int teamId);
+    List<MealType> findAllByTeamID(int teamId);
 
 }
