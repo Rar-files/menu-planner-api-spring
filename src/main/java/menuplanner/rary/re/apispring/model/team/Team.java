@@ -1,5 +1,6 @@
 package menuplanner.rary.re.apispring.model.team;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,14 +23,14 @@ public class Team {
     private String slug;
 
     @OneToMany(mappedBy = "team")
+    @JsonIgnoreProperties("team")
     private Set<TeamUser> users;
 
     @OneToMany(mappedBy = "team")
+    @JsonIgnoreProperties("team")
     private Set<TeamMealType> meal_types;
 
-    public Team() {
-
-    }
+    public Team() {}
 
     public Team(String name, String slug) {
         this.name = name;

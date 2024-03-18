@@ -1,5 +1,6 @@
 package menuplanner.rary.re.apispring.model.team;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import menuplanner.rary.re.apispring.model.meal.MealType;
@@ -19,6 +20,7 @@ public class TeamMealType {
     @JoinColumn(nullable = false)
     @ManyToOne
     @Setter
+    @JsonIgnoreProperties("meal_types")
     private Team team;
 
     public TeamMealType(){}
