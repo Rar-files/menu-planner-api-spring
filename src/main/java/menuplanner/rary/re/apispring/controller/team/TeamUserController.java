@@ -36,10 +36,10 @@ public class TeamUserController {
     @PostMapping()
     public ResponseEntity<TeamUser> createUserInTeam(@PathVariable int id, @RequestBody TeamUserDto teamUserDto) {
         var team = _teamRepository.findById(id);
-        if (team.isEmpty()) {throw  new ResourceNotFoundException("Team not exist with id :" + id);}
+        if (team.isEmpty()) {throw  new ResourceNotFoundException("Team with id :" + id);}
 
         var user = _userRepository.findById(teamUserDto.appUserId());
-        if (user.isEmpty()) {throw  new ResourceNotFoundException("User not exist with id :" + teamUserDto.appUserId());}
+        if (user.isEmpty()) {throw  new ResourceNotFoundException("User with id " + teamUserDto.appUserId());}
 
         TeamUser teamUser = new TeamUser(teamUserDto.teamRole(), user.get(), team.get());
         return ResponseEntity.status(HttpStatus.CREATED).body(_teamUserRepository.save(teamUser));

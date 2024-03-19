@@ -30,6 +30,10 @@ public class Team {
     @JsonIgnoreProperties("team")
     private Set<TeamMealType> meal_types;
 
+    @OneToMany(mappedBy = "team")
+    @JsonIgnoreProperties("team")
+    private Set<TeamMealType> meal_events;
+
     public Team() {}
 
     public Team(String name, String slug) {

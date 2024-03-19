@@ -1,5 +1,6 @@
 package menuplanner.rary.re.apispring.model.meal;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class Meal {
     private String description;
 
     @OneToMany(mappedBy = "meal")
+    @JsonIgnoreProperties("meal")
     private Set<Ingredient> ingredients;
 
     public Meal(){}

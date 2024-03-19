@@ -31,7 +31,7 @@ public class TeamController {
     @GetMapping("/{id}")
     public ResponseEntity<Team> getTeamById(@PathVariable int id) {
         Team team = _teamRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Team not exist with id :" + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Team with id " + id));
         return ResponseEntity.ok(team);
     }
 

@@ -40,7 +40,7 @@ public class TeamMealTypeController {
     public ResponseEntity<TeamMealType> createMealType(@PathVariable int id, @RequestBody TeamMealTypeDto teamMealTypeDto) {
         var teamMealType = _teamMealTypeMapper.toEntity(teamMealTypeDto);
         var team = _teamRepository.findById(id);
-        if (team.isEmpty()) {throw new ResourceNotFoundException("Team not exist with id :" + id);}
+        if (team.isEmpty()) {throw new ResourceNotFoundException("Team with id " + id);}
         teamMealType.setTeam(team.get());
         return ResponseEntity.status(HttpStatus.CREATED).body(_teamMealTypeRepository.save(teamMealType));
     }
