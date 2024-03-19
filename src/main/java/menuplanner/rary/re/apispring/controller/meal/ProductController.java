@@ -5,6 +5,7 @@ import menuplanner.rary.re.apispring.exception.ResourceNotFoundException;
 import menuplanner.rary.re.apispring.mapper.meal.ProductMapper;
 import menuplanner.rary.re.apispring.model.meal.Product;
 import menuplanner.rary.re.apispring.repository.meal.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ public class ProductController {
     private final ProductRepository _productRepository;
     private final ProductMapper _productMapper;
 
+    @Autowired
     public ProductController(ProductRepository productRepository, ProductMapper productMapper) {
         _productRepository = productRepository;
         _productMapper = productMapper;
