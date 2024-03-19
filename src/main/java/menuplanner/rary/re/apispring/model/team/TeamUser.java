@@ -1,14 +1,21 @@
 package menuplanner.rary.re.apispring.model.team;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import menuplanner.rary.re.apispring.model.team.Team;
 import menuplanner.rary.re.apispring.model.team.TeamRole;
 import menuplanner.rary.re.apispring.model.user.AppUser;
 
+@Getter
 @Entity
+@Setter
 @Table(name = "team_user")
 public class TeamUser {
     @Id    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.PRIVATE)
     private int id;
 
     @Column(nullable = false)
@@ -17,10 +24,12 @@ public class TeamUser {
 
     @JoinColumn(nullable = false)
     @ManyToOne
+    @JsonIgnoreProperties("teams")
     private AppUser appUser;
 
     @JoinColumn(nullable = false)
     @ManyToOne
+    @JsonIgnoreProperties("users")
     private Team team;
 
     public TeamUser() {
@@ -29,34 +38,6 @@ public class TeamUser {
     public TeamUser(TeamRole teamRole, AppUser appUser, Team team) {
         this.teamRole = teamRole;
         this.appUser = appUser;
-        this.team = team;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public TeamRole getTeamRole() {
-        return teamRole;
-    }
-
-    public void setTeamRole(TeamRole teamRole) {
-        this.teamRole = teamRole;
-    }
-
-    public AppUser getUser() {
-        return appUser;
-    }
-
-    public void setUser(AppUser appUser) {
-        this.appUser = appUser;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
         this.team = team;
     }
 }

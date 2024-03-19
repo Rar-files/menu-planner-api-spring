@@ -1,13 +1,20 @@
 package menuplanner.rary.re.apispring.model.meal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name="product")
 public class Product {
     @Id    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.PRIVATE)
     private int id;
 
     @Column(nullable = false, unique = true)
@@ -24,6 +31,7 @@ public class Product {
     private float pricePerUnit;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore()
     private Set<Ingredient> ingredients;
 
     public Product(){}
@@ -35,45 +43,5 @@ public class Product {
         this.slug = slug;
         this.unit = unit;
         this.pricePerUnit = pricePerUnit;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
-    }
-
-    public float getPricePerUnit() {
-        return pricePerUnit;
-    }
-
-    public void setPricePerUnit(float pricePerUnit) {
-        this.pricePerUnit = pricePerUnit;
-    }
-
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
     }
 }

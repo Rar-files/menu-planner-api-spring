@@ -1,4 +1,4 @@
-package menuplanner.rary.re.apispring.controller;
+package menuplanner.rary.re.apispring.controller.user;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import menuplanner.rary.re.apispring.exception.*;
 import menuplanner.rary.re.apispring.repository.user.UserRepository;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private final UserRepository _userRepository;
@@ -22,22 +22,23 @@ public class UserController {
     }
 
     // get all users
-    @GetMapping("/users")
+    @GetMapping()
     public List<AppUser> getAllUsers(){
         return _userRepository.findAll();
     }
 
-    // get user by id rest api
-    @GetMapping("/users/{id}")
-    public ResponseEntity<AppUser> getUserById(@PathVariable String id) {
+    // get user by id
+    @GetMapping("/{id}")
+    public ResponseEntity<AppUser> getUserById(@PathVariable int id) {
         AppUser appUser = _userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not exist with id :" + id));
+                .orElseThrow(() -> new ResourceNotFoundException("User with id :" + id));
         return ResponseEntity.ok(appUser);
     }
 
-    // create user rest api
-    @PostMapping("/users")
+    // create a new user
+    @PostMapping()
     public AppUser createUser(@RequestBody AppUser appUser) {
+
         return _userRepository.save(appUser);
     }
 }

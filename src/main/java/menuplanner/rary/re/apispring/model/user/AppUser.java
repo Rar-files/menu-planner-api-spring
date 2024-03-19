@@ -1,15 +1,22 @@
 package menuplanner.rary.re.apispring.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import menuplanner.rary.re.apispring.model.team.TeamUser;
 
+import java.io.Serializable;
 import java.util.Set;
 
+@Setter
+@Getter
 @Entity
 @Table(name="app_user")
-public class AppUser {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AppUser implements Serializable {
+    @Id     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.PRIVATE)
     private int id;
 
     @Column(nullable = false, unique = true)
@@ -29,6 +36,7 @@ public class AppUser {
     private Role role;
 
     @OneToMany(mappedBy = "appUser")
+    @JsonIgnore()
     private Set<TeamUser> teams;
 
     public AppUser(){}
@@ -41,57 +49,5 @@ public class AppUser {
         this.email = email;
         this.image = image;
         this.role = role;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getAuthId() {
-        return authId;
-    }
-
-    public void setAuthId(String authId) {
-        this.authId = authId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public Set<TeamUser> getTeams() {
-        return teams;
     }
 }
